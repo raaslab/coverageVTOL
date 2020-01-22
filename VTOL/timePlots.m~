@@ -13,9 +13,11 @@ timeIall = timeI;
 load timeVSj.mat
 timeJall = timeJ;
 load timeVSturnRadius.mat
-timeVSturnRadiusall = timeTurnRadius;
+timeVSturnRadiusall = timeVSturnRadius;
 load timeVSfixedRatio.mat
-timeVSfixedRatioall = timeFixedRatio;
+% load costVSbudget.mat
+% load costVSbudgetGLNSOutput.mat
+% load glnsOutput.mat
 
 % plot for cost vs budget
 figure(1)
