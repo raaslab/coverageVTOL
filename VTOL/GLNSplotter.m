@@ -5,10 +5,10 @@
 
 clear
 close all
-load /home/user01/Kevin_Yu/3D_bridge_meshes/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQh1.mat
-load /home/user01/Kevin_Yu/3D_bridge_meshes/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQh3.mat
+load /home/user01/Kevin_Yu/3D_bridge_meshes/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQb1.mat
+load /home/user01/Kevin_Yu/3D_bridge_meshes/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQb3.mat
 
-% GLNSSolution = [281, 22, 323, 64, 365, 106, 127, 428, 169, 470, 211, 273, 535, 237, 561] % qualitative b (only multi-rotor flight)
+GLNSSolution = [281, 22, 323, 64, 365, 106, 127, 428, 169, 470, 211, 273, 535, 237, 561] % qualitative b (only multi-rotor flight)
 % GLNSSolution = [281, 23, 325, 67, 369, 111, 135, 438, 163, 466, 209, 276, 532, 237, 561] % qualitative c (only multi-rotor with down up edges)
 % GLNSSolution = [281, 23, 325, 67, 369, 111, 122, 425, 168, 471, 481, 267, 532, 237, 561] % qualitative d (UGV travel edges)
 % GLNSSolution = [501, 242, 543, 465, 146, 487, 168, 409, 390, 71, 312, 93, 334, 15, 561] % qualitative e (only fixed-wing flight)
@@ -16,9 +16,11 @@ load /home/user01/Kevin_Yu/3D_bridge_meshes/coverageVTOL/VTOL/outputs/qualitativ
 % GLNSSolution = [501, 248, 541, 491, 196, 441, 146, 411, 397, 81, 286, 30, 334, 78, 561] % qualitative g (with down up edges)
 % GLNSSolution = [43, 1401, 1251, 608, 1365, 1226, 481, 1136, 391, 1017, 973, 227, 881, 135, 789] % qualitative h (fixed-wing with down up edges)
 
-
-
-% plotTXT('/home/klyu/lab/coverageWork/coverage/GTSP/inputs/fieldExperiments/exampleFigureBC.txt')
+totalCost = 0;
+for i = 1:length(GLNSSolution)-1
+    totalCost = totalCost + roundedGtspMatrix(GLNSSolution(i),GLNSSolution(i+1));
+end
+totalCost
 
 v_Cluster = cell2mat(v_Cluster);
 while GLNSSolution(1) ~= (numPointsInit * numBatteryLevels)+1
