@@ -20,6 +20,7 @@ turnRadius = 0.5;     % turn radius for dubins constraints in
 % filename4 = sprintf('inputs/timeVSi/%d_%d.txt',trial,numBC);
 % polygonCreater(filename4,numBC,100,0,0) % creates random polygons.
 
+% TODO: check why the path from every node to the new last node is always type 1 edge?
 % use 'testInput.txt' if you want the file from polygonCreater
 data = readData('/home/user01/Kevin_Yu/3D_bridge_meshes/coverage/VTOL/inputs/qualitative.txt'); % get the size and shape from the data (this will tell you number of clusters points and so on)
 [numClusters, ~] = size(data);

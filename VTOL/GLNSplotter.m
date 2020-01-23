@@ -5,8 +5,8 @@
 
 clear
 close all
-load /home/user01/Kevin_Yu/3D_bridge_meshes/coverage/VTOL/outputs/journalQi1.mat
-load /home/user01/Kevin_Yu/3D_bridge_meshes/coverage/VTOL/outputs/journalQi3.mat
+load /home/user01/Kevin_Yu/3D_bridge_meshes/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQh1.mat
+load /home/user01/Kevin_Yu/3D_bridge_meshes/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQh3.mat
 
 % GLNSSolution = [281, 22, 323, 64, 365, 106, 127, 428, 169, 470, 211, 273, 535, 237, 561] % qualitative b (only multi-rotor flight)
 % GLNSSolution = [281, 23, 325, 67, 369, 111, 135, 438, 163, 466, 209, 276, 532, 237, 561] % qualitative c (only multi-rotor with down up edges)
