@@ -19,14 +19,17 @@ rRate = 2;         % rate of recharge
 UGVS = 5;          % time to travel one unit for the UGV (greater than 1 means UGV is slower)
 method = 1;        % 1 = GLNS, 0 = con  corde
 numBC = 15;
+fixedRatio = 3;
+turnRadius = 3;
 
+% data = readData('/home/user01/Kevin_Yu/3D_bridge_meshes/coverage/VTOL/inputs/qualitative.txt'); % get the size and shape from the data (this will tell you number of clusters points and so on)
 
 timeUnit = [];
 
-for trial = 1:1
+for trial = 1:10
     display(trial)
-    filename4 = sprintf('inputs/costVSbudget%d.txt',trial);
-    polygonCreaterSmall(filename4,numBC,100,0,0,10) % creates random polygons.
+    filename4 = sprintf('/home/user01/Kevin_Yu/coverageVTOL/VTOL/inputs/costVSbudget/costVSbudget%d.txt',trial);
+%     polygonCreaterSmall(filename4,numBC,100,0,0,10) % creates random polygons.
     data = readData(filename4); % get the size and shape from the data (this will tell you number of clusters points and so on)
     [numClusters, ~] = size(data);
     x = [data(:,1), data(:,4)];
@@ -40,11 +43,11 @@ for trial = 1:1
         %     j = forLoopVariable;
         j = 20;
         filename1 = sprintf('/%d/1_%d',trial,forLoopVariable);
-        filename2 = sprintf('/home/klyu/lab/coverageWork/testForCoverage/costVSbudget/%d/2_%d.gtsp', trial, forLoopVariable);
+        filename2 = sprintf('/home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/costVSbudget/%d/2_%d.gtsp', trial, forLoopVariable);
         filename3 = sprintf('/%d/3_%d',trial,forLoopVariable);
         
-        pathName = '/home/klyu/lab/coverageWork/testForCoverage/costVSbudget/';
-        [ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS, G, x, y, method, max_Distance, pathName,UGVCapable);
+        pathName = '/home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/costVSbudget/';
+        [ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i,j,filename1,tTO,tL,rRate,UGVS,x,y,method,max_Distance,pathName,UGVCapable,fixedRatio,turnRadius);
         
         % making GLNS matrix input
         roundedGtspMatrix = round(gtspMatrix);
@@ -54,7 +57,7 @@ for trial = 1:1
         f = fullfile(pathName, filename3);
         save(f);
         trialTime = toc;
-        timeUnit(end+1, :) = [double(forLoopVariable), trialTime];
+        timeUnit(end+1, :) = [trial,double(forLoopVariable), trialTime];
     end
 end
 

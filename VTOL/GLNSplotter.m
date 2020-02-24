@@ -5,8 +5,8 @@
 
 clear
 close all
-load /home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQb1.mat
-load /home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/qualitativeExamples/journalQb3.mat
+load /home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/fieldExperiments/kentLand2_1.mat
+load /home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/fieldExperiments/kentLand2_3.mat
 
 GLNSSolution = [281, 22, 323, 64, 365, 106, 127, 428, 169, 470, 211, 273, 535, 237, 561] % qualitative b (only multi-rotor flight)
 % GLNSSolution = [281, 23, 325, 67, 369, 111, 135, 438, 163, 466, 209, 276, 532, 237, 561] % qualitative c (only multi-rotor with down up edges)
@@ -15,6 +15,8 @@ GLNSSolution = [281, 22, 323, 64, 365, 106, 127, 428, 169, 470, 211, 273, 535, 2
 % GLNSSolution = [521, 228, 541, 210, 475, 441, 146, 411, 398, 82, 346, 50, 314, 18, 561] % qualitative f (mix of all types of edges)
 % GLNSSolution = [501, 248, 541, 491, 196, 441, 146, 411, 397, 81, 286, 30, 334, 78, 561] % qualitative g (with down up edges)
 % GLNSSolution = [43, 1401, 1251, 608, 1365, 1226, 481, 1136, 391, 1017, 973, 227, 881, 135, 789] % qualitative h (fixed-wing with down up edges)
+% GLNSSolution = [2421, 1125, 2469, 1173, 2517, 1204, 2548, 1252, 2596, 1281, 2625, 2410, 1073, 2377, 1022, 2327, 990, 2293, 897, 2199, 2180, 902, 2249, 956, 340, 1622, 283, 1585, 247, 1549, 212, 1515, 178, 1462, 126, 350, 1373, 2, 1349, 76, 1401, 108, 1695, 398, 1740, 2143, 808, 2113, 777, 2062, 726, 2030, 694, 1998, 641, 1946, 612, 1918, 561, 1864, 530, 1835, 421, 1766, 471, 1816, 2641]; % exampleBC plot
+GLNSSolution = [1, 1409, 217, 1625, 433, 1841, 1259, 2483, 601, 2049, 867, 2275, 1088, 2601] % Kentland Flight
 
 totalCost = 0;
 for i = 1:length(GLNSSolution)-1
@@ -191,17 +193,17 @@ end
 %     figure(2)
 %     GLNSPlot = plot(GLNSg,'XData',GLNSx,'YData',GLNSy, 'LineWidth',3, 'EdgeColor', [0,0,1]);
 %     GLNSPlot.EdgeAlpha = 1;
-%     
+%
 %     %     GLNSPlot.NodeLabel = {};
 %     axis equal
 %     %     axis([200 900 50 800])
 %     groupedPoints = cell2mat(groupedPoints);
-%     
+%
 %     %     for i = 2:length(GLNSSolution)-1
 %     %         text(GLNSx(groupedPoints(GLNSSolution(i))), GLNSy(groupedPoints(GLNSSolution(i)))+0.1, num2str(v_ClusterLevels(GLNSSolution(i))), 'FontSize', 16)
 %     %     end
 %     hold on
-%     
+%
 %     % highlight edges for UAV
 %     if isempty(S3) == 0                 %highlight type 1 edges: F-F
 %         highlight(GLNSPlot,S3, T3,'EdgeColor',[102,205,170]/255,'LineWidth',4, 'LineStyle', '-')
@@ -225,24 +227,24 @@ end
 %         highlight(GLNSPlot,downUpPoints,'MarkerSize',10)
 %         highlight(GLNSPlot,downUpPoints,'NodeColor',[0,0,0]/255)
 %     end
-%     
-%     
+%
+%
 %     % highlighting edges for UGV
 %     % highlight(GLNSPlot, S8, T8, 'EdgeColor', 'r', 'LineWidth', 4)
-%     
+%
 %     %     highlight(GLNSPlot, S2)             %highlights nodes
 %     %     highlight(GLNSPlot, numel(S2))    %highlights last node
 % else
 %     disp('impossible input');
 % end
-% 
+%
 % hold on
 % for i = 2:2:length(GLNSx)-1
 %     [cord,~,~] = createRectangle(GLNSx(GLNSSolutionWithAllPoints(i)), GLNSy(GLNSSolutionWithAllPoints(i)), GLNSx(GLNSSolutionWithAllPoints(i+1)), GLNSy(GLNSSolutionWithAllPoints(i+1)));
 %     plot(cord(:,1),cord(:,2), 'color', 'k', 'linewidth',2)
-%     
+%
 % end
-% 
+%
 % h = zeros(6, 1);
 % h(1) = plot(NaN,NaN,'color', [102,205,170]/255);
 % h(2) = plot(NaN,NaN,'color', [255,165,0]/255);
@@ -263,6 +265,7 @@ if impossible == 0
     GLNSPlot.EdgeAlpha = 1;
     axis equal
     hold on
+    GLNSPlot.NodeLabel = {};
     
     % highlight edges for UAV
     if isempty(sMulti) == 0                 %highlight type 1 edges: multirotor
@@ -295,4 +298,9 @@ h(2) = plot(NaN,NaN,'color', [60,180,75]/255);
 h(3) = plot(NaN,NaN,'color', [0,130,200]/255);
 legg = legend(h,'M','F','G');
 legg.FontSize = 9;
-title('Output Tour', 'Fontsize', 16)
+title('Output Tour', 'Fontsize', 20)
+axis([200 900 0 550])
+set(gca,'Ydir','reverse')
+
+
+

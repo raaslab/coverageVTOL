@@ -33,7 +33,7 @@ for i = 10:1:50
     avgTimeVSsite(end+1,:) = [i,averageTime];
 end
 errorbar(avgTimeVSsite(:,1),avgTimeVSsite(:,2),neg(:,2), pos(:,2),'b-o','LineWidth', 2)
-title('Computational Time vs. Boustrophedon Cells', 'FontSize', 16)
+title('Computational Time vs. Boustrophedon Cells', 'FontSize', 12)
 xlabel('Number of Input Boustrophedon Cells','FontSize', 14)
 ylabel('Computational Time (secondes)','FontSize', 14)
 
@@ -55,7 +55,7 @@ for i = 10:10:100
     averageTimeVSlevel(end+1,:) = [i,averageTime];
 end
 errorbar(averageTimeVSlevel(:,1), averageTimeVSlevel(:,2),neg(:,2),pos(:,2),'b-o','LineWidth', 2)
-title('Computational Time vs. Battery Levels','FontSize', 16)
+title('Computational Time vs. Battery Levels','FontSize', 12)
 xlabel('Number of Battery Levels','FontSize', 14)
 ylabel('Computational Time (secondes)','FontSize', 14)
 
@@ -77,7 +77,7 @@ for i = 1:1:10
     averageTimeVSlevel(end+1,:) = [i,averageTime];
 end
 errorbar(averageTimeVSlevel(:,1), averageTimeVSlevel(:,2),neg(:,2),pos(:,2),'b-o','LineWidth', 2)
-title('Computational Time vs. Turn Radius','FontSize', 16)
+title('Computational Time vs. Turn Radius','FontSize', 12)
 xlabel('Turn Radius (meters)','FontSize', 14)
 ylabel('Computational Time (secondes)','FontSize', 14)
 
@@ -99,6 +99,6 @@ for i = 1:1:20
     averageTimeVSlevel(end+1,:) = [i,averageTime];
 end
 errorbar(averageTimeVSlevel(:,1), averageTimeVSlevel(:,2),neg(:,2),pos(:,2),'b-o','LineWidth', 2)
-title('Computational Time vs. Fixed Ratio','FontSize', 16)
+title('Computational Time vs. Fixed Ratio','FontSize', 12)
 xlabel('Fixed Ratio','FontSize', 14)
 ylabel('Computational Time (secondes)','FontSize', 14)
