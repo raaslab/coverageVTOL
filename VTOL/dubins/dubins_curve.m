@@ -116,14 +116,15 @@ function path = dubins_curve(p1, p2, r, stepsize, quiet)
         disp('dubins calculation time'); toc;
         % plotting
         tic;    % most of the time is spent on plotting
-        figure('name','Dubins curve');
-        plot(path(:,1), path(:,2)); axis equal; hold on
-        scatter(p1(1), p1(2), 45, '*','r','LineWidth',1); hold on;
-        scatter(p2(1), p2(2), 45, 'square','b','LineWidth',1); hold on;
-        text(p1(1), p1(2),'start','HorizontalAlignment','center');
-        text(p2(1), p2(2),'end','VerticalAlignment','top');
+        figure(3);
+        plot(path(:,1), path(:,2),'LineWidth',3,'Color',[60,180,75]/255,'LineStyle','-'); axis equal; hold on
+%         scatter(p1(1), p1(2), 45, '*','r','LineWidth',1); hold on;
+%         scatter(p2(1), p2(2), 45, 'square','b','LineWidth',1); hold on;
+%         text(p1(1), p1(2),'start','HorizontalAlignment','center');
+%         text(p2(1), p2(2),'end','VerticalAlignment','top');
         disp('plot drawing time'); toc;
-        title('Dubins Curve')
+%         title('Dubins Curve')
+%         hold off;
     end
 end
 

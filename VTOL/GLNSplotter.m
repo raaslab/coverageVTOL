@@ -284,7 +284,10 @@ if impossible == 0
 else
     disp('impossible input');
 end
-
+% Add these three lines of code if you are running dubinsPlot
+% sRemove = [12,14,7,19];
+% tRemove = [13,25,20,15];
+% highlight(GLNSPlot,sRemove,tRemove,'EdgeColor',[255,255,255]/255,'LineWidth',3,'LineStyle','-');
 hold on
 for i = 2:2:length(GLNSx)-1
     [cord,~,~] = createRectangle(GLNSx(GLNSSolutionWithAllPoints(i)), GLNSy(GLNSSolutionWithAllPoints(i)), GLNSx(GLNSSolutionWithAllPoints(i+1)), GLNSy(GLNSSolutionWithAllPoints(i+1)));
