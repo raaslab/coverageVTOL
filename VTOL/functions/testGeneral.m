@@ -6,7 +6,7 @@
 % method = 1 is GLNS, 0 is concorde
 % OUTPUTS
 
-function [time,gtspWeightMatrix2, gtspTime, v_Cluster] = testGeneral(numPointsInit, numBatteryLevels, filename, timeTO, timeL, rechargeRate, UGVSpeed, x, y, method, maxDistance, pathName,UGVCapable,fixedRatio,turnRadius)
+function [time,gtspWeightMatrix2, gtspTime, v_Cluster] = testGeneral(numPointsInit, numBatteryLevels, filename, timeTO, timeL, rechargeRate, UGVSpeed, x, y, method, maxDistance, pathName,UGVCapable,fixedRatio,turnRadius,saveFile)
 
 time = 0;
 rotation = 51; % value used for rotating in graphMakingNew, in degrees
@@ -42,7 +42,9 @@ groupedPoints = num2cell(groupedPoints);
 gtspTime = 0;
 
 f = fullfile(pathName, filename);
-save(f);
+if(saveFile == 1)
+    save(f);
+end
 
 end
 

@@ -4,6 +4,7 @@
 clc; clear all; close all;
 
 % numBC = 20;
+saveFile = 0;
 
 max_Distance = 50;   % if max_Distance == j then discharge is unit rate per distance (budget)
 j = 20;
@@ -35,16 +36,20 @@ filename3 = sprintf('qualitative33');
 tic
 pathName = '/home/klyu/lab/coverageWork/testForCoverage/qualitative/';
 % pathName = '/home/klyu/lab/coverageWork/testForCoverage/errorInstance'; % for error instances
-[ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS, G, x, y, method, max_Distance, pathName,UGVCapable);
+[ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS, G, x, y, method, max_Distance, pathName,UGVCapable,saveFile);
 
 % making GLNS matrix input
 roundedGtspMatrix = round(gtspMatrix);
 roundedGtspMatrix(roundedGtspMatrix == -1) = 999999;
 roundedGtspMatrix(roundedGtspMatrix == Inf) = 999999;
-createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+if(saveFile == 1)
+    createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+end
 f = fullfile(pathName, filename3);
 trialTime = toc
-save(f);
+if(saveFile == 1)
+    save(f);
+end
 
 
 

@@ -5,6 +5,7 @@ dbstop error
 clc; clear all; close all;
 
 numBC = 15;
+saveFile = 0;
 
 max_Distance = 1000;   % if max_Distance == j then discharge is unit rate per distance (budget)
 % j = 20;
@@ -42,15 +43,19 @@ for trial  = 1:10
         tic
         pathName = '/home/user01/Kevin_Yu/3D_bridge_meshes/coverage/VTOL/outputs/timeVSj';
         % pathName = '/home/klyu/lab/coverageWork/testForCoverage/errorInstance'; % for error instances
-        [ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS,x, y, method, max_Distance,pathName,UGVCapable,fixedRatio,turnRadius);
+        [ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS,x, y, method, max_Distance,pathName,UGVCapable,fixedRatio,turnRadius,saveFile);
         
         % making GLNS matrix input
         roundedGtspMatrix = round(gtspMatrix);
         roundedGtspMatrix(roundedGtspMatrix == -1) = 999999;
         roundedGtspMatrix(roundedGtspMatrix == Inf) = 999999;
-        createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+        if(saveFile == 1)
+            createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+        end
         f = fullfile(pathName, filename3);
-        save(f);
+        if(saveFile == 1)
+            save(f);
+        end
         trialTime = toc
         timeJ(end+1, :) = [trial, double(j), trialTime];
         fprintf("loop:%d\n",loop)
@@ -58,4 +63,6 @@ for trial  = 1:10
     end
 end
 
-save('timeVSj.mat')
+if(saveFile == 1)
+    save('timeVSj.mat')
+end

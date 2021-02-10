@@ -2,6 +2,7 @@
 % this will run a specific case for if there's an error within "time"
 % variable
 clc; clear all; close all;
+saveFile = 0;
 
 % numBC = 20;
 max_Distance = 1000;   % if max_Distance == j then discharge is unit rate per distance (budget)
@@ -22,7 +23,7 @@ turnRadius = 3;     % turn radius for dubins constraints in
 
 % TODO: check why the path from every node to the new last node is always type 1 edge?
 % use 'testInput.txt' if you want the file from polygonCreater
-data = readData('/home/user01/Kevin_Yu/coverageVTOL/VTOL/inputs/fieldExperiments/kentLand2.txt'); % get the size and shape from the data (this will tell you number of clusters points and so on)
+data = readData('inputs/fieldExperiments/kentLand2.txt'); % get the size and shape from the data (this will tell you number of clusters points and so on)
 [numClusters, ~] = size(data);
 x = [data(:,1), data(:,4)];
 y = [data(:,2), data(:,5)];
@@ -39,16 +40,19 @@ pathName = '/home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/fieldExperiments';
 
 tic
 % pathName = '/home/klyu/lab/coverageWork/testForCoverage/errorInstance'; % for error instances
-[ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS, x, y, method, max_Distance, pathName,UGVCapable,fixedRatio,turnRadius);
+[ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS, x, y, method, max_Distance, pathName,UGVCapable,fixedRatio,turnRadius,saveFile);
 
 % making GLNS matrix input
 roundedGtspMatrix = round(gtspMatrix);
 roundedGtspMatrix(roundedGtspMatrix == -1) = 999999;
 roundedGtspMatrix(roundedGtspMatrix == Inf) = 999999;
-createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+if(saveFile == 1)
+    createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+end
 f = fullfile(pathName, filename3);
 trialTime = toc
-save(f);
-
+if(saveFile == 1)
+    save(f);
+end
 % Run GLNS after this
 % Run Plotter after this

@@ -9,6 +9,8 @@
 dbstop error
 clc; clear all; close all;
 
+saveFile = 0;
+
 G = 0;
 % x = 0;
 % y = 0;
@@ -47,19 +49,25 @@ for trial = 1:10
         filename3 = sprintf('/%d/3_%d',trial,forLoopVariable);
         
         pathName = '/home/user01/Kevin_Yu/coverageVTOL/VTOL/outputs/costVSbudget/';
-        [ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i,j,filename1,tTO,tL,rRate,UGVS,x,y,method,max_Distance,pathName,UGVCapable,fixedRatio,turnRadius);
+        [ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i,j,filename1,tTO,tL,rRate,UGVS,x,y,method,max_Distance,pathName,UGVCapable,fixedRatio,turnRadius,saveFile);
         
         % making GLNS matrix input
         roundedGtspMatrix = round(gtspMatrix);
         roundedGtspMatrix(roundedGtspMatrix == -1) = 999999;
         roundedGtspMatrix(roundedGtspMatrix == Inf) = 999999;
-        createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+        if(saveFile == 1)
+            createGTSPFile(filename2,roundedGtspMatrix, i, j, v_Cluster) % creating GLNS file
+        end
         f = fullfile(pathName, filename3);
-        save(f);
+        if(saveFile == 1)
+            save(f);
+        end
         trialTime = toc;
         timeUnit(end+1, :) = [trial,double(forLoopVariable), trialTime];
     end
 end
 
-save('costVSbudget.mat')
+if(saveFile == 1)
+    save('costVSbudget.mat')
+end
 
