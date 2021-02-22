@@ -7,7 +7,7 @@
 % OUTPUTS
 
 function [time,gtspWeightMatrix2, gtspTime, v_Cluster] = testGeneral(numPointsInit, numBatteryLevels, filename, timeTO, timeL, rechargeRate, UGVSpeed, x, y, method, maxDistance, pathName,UGVCapable,fixedRatio,turnRadius,saveFile)
-
+fprintf("ejfowejfoiejfoiwjfioejfiofewj\n");
 time = 0;
 rotation = 51; % value used for rotating in graphMakingNew, in degrees
 nodeArray = [];
@@ -34,17 +34,17 @@ groupedPoints = num2cell(groupedPoints);
 
 [v_Adj, v_Type, S1, T1, v_ClusterLevels] = makingSTWv_AdjGeneral(maxDistance, x1, y1, numPointsInit, numBatteryLevels, v_Cluster, timeTO, timeL, rechargeRate, UGVSpeed, groupedPoints,UGVCapable1,fixedRatio,turnRadius);
 
-[xOut, yOut] = graphingCluster(x1, y1, numPointsInit, numBatteryLevels, S1, T1, 0, nodeArray, method); % graph in cluster format
+% [xOut, yOut] = graphingCluster(x1, y1, numPointsInit, numBatteryLevels, S1, T1, 0, nodeArray, method); % graph in cluster format
 
 % GTSP solver
 % tic;
 [finalMatrix,G_init,edgeWeightsFinal,finalTour,gtspWeightMatrix,gtspWeightMatrix2,v_Type] = gtspSolver(v_Cluster,v_Adj,numPointsInit,numBatteryLevels,method,groupedPoints,x1,y1,maxDistance,v_Type,v_ClusterLevels);
 gtspTime = 0;
 
-f = fullfile(pathName, filename);
-if(saveFile == 1)
-    save(f);
-end
+% f = fullfile(pathName, filename);
+% if(saveFile == 1)
+%     save(f);
+% end
 
 end
 

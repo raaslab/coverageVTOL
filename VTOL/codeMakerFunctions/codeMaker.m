@@ -1,5 +1,5 @@
-load('./outputs/fieldExperiments/kentLand1_1.mat')
-load('./outputs/fieldExperiments/kentLand1_3.mat')
+load('../outputs/fieldExperiments/kentLand1_1.mat')
+load('../outputs/fieldExperiments/kentLand1_3.mat')
 
 name = 'test.py';
 aORb = ["a","b"];
@@ -49,7 +49,7 @@ end
 
 % # TODO: write objective here
 % # TODO: fix this objective function
-[ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS, x, y, method, max_Distance, pathName,UGVCapable,fixedRatio,turnRadius,saveFile);
+[ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(numClusters*2,numBatteryLevels,filename1,timeTO,timeL,rRate,UGVSpeed,x,y,method,max_Distance,pathName,UGVCapable,fixedRatio,turnRadius,0);
 fprintf(fileID, "\n\t# Set objective:\n");
 fprintf(fileID, "\tm.setObjective(");
 count = 0;

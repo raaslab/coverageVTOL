@@ -23,7 +23,7 @@ turnRadius = 3;     % turn radius for dubins constraints in
 
 % TODO: check why the path from every node to the new last node is always type 1 edge?
 % use 'testInput.txt' if you want the file from polygonCreater
-data = readData('inputs/fieldExperiments/kentLand2.txt'); % get the size and shape from the data (this will tell you number of clusters points and so on)
+data = readData('./inputs/fieldExperiments/kentLand2.txt'); % get the size and shape from the data (this will tell you number of clusters points and so on)
 [numClusters, ~] = size(data);
 x = [data(:,1), data(:,4)];
 y = [data(:,2), data(:,5)];
