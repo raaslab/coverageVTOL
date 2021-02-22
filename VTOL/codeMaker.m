@@ -53,7 +53,7 @@ fprintf(fileID, "\n\t# Set objective:\n");
 fprintf(fileID, "\tm.setObjective(");
 count = 0;
 for i = 1:length(nodeVariableNames)
-    for j = 1,length(nodeVariableNames)
+    for j = 1:length(nodeVariableNames)
         if i~=j
             fprintf(fileID, "var" + nodeVariableNames(i) + nodeVariableNames(j));
             count = count + 1;
