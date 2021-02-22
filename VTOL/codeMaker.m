@@ -49,6 +49,7 @@ end
 
 % # TODO: write objective here
 % # TODO: fix this objective function
+[ansTime,gtspMatrix,gtspTime, v_Cluster] = testGeneral(i, j, filename1, tTO, tL, rRate, UGVS, x, y, method, max_Distance, pathName,UGVCapable,fixedRatio,turnRadius,saveFile);
 fprintf(fileID, "\n\t# Set objective:\n");
 fprintf(fileID, "\tm.setObjective(");
 count = 0;
